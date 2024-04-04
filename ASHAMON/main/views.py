@@ -33,10 +33,6 @@ def home(response):
     return render(response, "main/home.html", {})
 
 def create(response):
-    form = CreateNewList()
-    return render(response, "main/create.html", {"form":form})
-
-def create(response):
     if response.method == "POST":
         form = CreateNewList(response.POST)
 
@@ -44,15 +40,13 @@ def create(response):
             n = form.cleaned_data["name"]
             t = ToDoList(name=n)
             t.save()
+            response.user.todolist.add(t)
+            
         return HttpResponseRedirect("/%i" %t.id)
 
     else:    
         form = CreateNewList()
     return render(response, "main/create.html", {"form":form})
 
-def v1(response):
-    return HttpResponse("<h1>Welcome to the ASHAMON homepage!</h1>")
-
-def none(response, id):
-    ls = ToDoList.objects.get()
-    return HttpResponse("<h1>%s</h1>" %ls.name)
+def view(response):
+    return render(response, "main/view.html", {})
