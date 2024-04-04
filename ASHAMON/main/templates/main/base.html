@@ -1,25 +1,51 @@
-<HTML>
+<html>
+  <head>
+    <style type="text/css">
+        .sidenav {
+            height:100%;
+            width:160px;
+            position: fixed;
+            z-index:1;
+            top:0;
+            left:0;
+            background-color:#111;
+            overflow-x:hidden;
+            padding-top:20px;
+        }
 
-<head>
-    <title>
-        {% block title %}
+        .sidenav a {
+            padding:6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display:block;
+        }
 
-        Patrick's Index
+        .sidenav a:hover{
+            color:#f1f1f1;
+        }
 
-        {% endblock %}
-    </title>
-</head>
+        .main{
+            margin-left: 160px;
+            padding: 0px 10px;
+        }
 
-<body>
+    </style>
+    <title>{% block title %} Patrick's Index {% endblock %}</title>
+  </head>
+
+  <body>
+    <div class="sidenav">
+      <a href="/home">Home</a>
+      <a href="/create">Create</a>
+      <a href="/2">View</a>
+    </div>
     <p>
-        <b>
-            <div id="content" , name="content">
-                {% block content %}
-                Index
-                {% endblock %}
-            </div>
-        </b>
+      <b>
+        <div id="content" , name="content", class="main">
+          {% block content %} Index {% endblock %}
+        </div>
+      </b>
     </p>
-</body>
-
-</HTML>
+  </body>
+</html>
