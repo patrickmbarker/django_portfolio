@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 #When models are updated, we must save this file and then tell Django we have updated
@@ -10,7 +11,8 @@ from django.db import models
 #These initial.py files can be used to revert to previous states if an error is introduced to the app
 ### New Comment
 class ToDoList(models.Model):
-    name = models.CharField(max_length=200)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="todolist", null=True)
+    name = models.CharField(max_length=200)    
 
     def __str__(self):
         return self.name
@@ -20,5 +22,6 @@ class Item(models.Model):
     text = models.CharField(max_length=300)
     complete = models.BooleanField()
 
-    def __str__(self):
+    def __str__(self): 
         return self.text
+ 
