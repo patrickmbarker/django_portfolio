@@ -1,0 +1,20 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+Attribution by Payer
+{% endblock %}
+
+{% block content %}
+<h1>ASHA Attribution by Payer</h1>
+<br>
+<body>This is a view of ASHA's attribution trended over time.
+    <br>
+    <br> 
+    <rsweb:ReportViewer ID="ReportViewer" runat="AHWSQLTXAUS013" Width="1239px" ProcessingMode="Remote" Font-Names="Verdana" Font-Size="8pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt">
+        <ServerReport ReportServerUrl="http://ahwsqltxaus013:80/ReportServer" ReportPath="/SHA_Analytics/Operations/FileMonitor_Overview_Monthly"/>
+
+    </rsweb:ReportViewer>
+    <script type='module' src='https://tableau.ascension.org/javascripts/api/tableau.embedding.3.latest.min.js'></script><tableau-viz id='tableau-viz' src='https://tableau.ascension.org/t/Ascension_Texas/views/MembershipAttributionDashboard/MembershipbyPayer' width='1340' height='1288' toolbar='bottom' ></tableau-viz>
+</body>
+<br>
+{% endblock %}
