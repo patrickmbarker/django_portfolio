@@ -1,19 +1,15 @@
 {% extends "main/base.html" %}
 
 {% block title %}
-Data Visualizations
+Attribution by Payer
 {% endblock %}
 
 {% block content %}
-
-<body>This is a view of ASHA's attribution trended over time.
+<h1>ASHA Attribution by Payer</h1>
+<br>
+<body>This is a view of ASHA's SQL agent jobs and their status.
     <br>
     <br> 
-    <h1>SQL Job Failures</h1>
-    <br>
-    <iframe title="EHN Claims" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=5afb5847-5e31-45ec-9159-8bade450f6a7&autoAuth=true&ctid=69242786-d60e-42cb-a5c8-c5553856f74f" frameborder="0" allowFullScreen="true"></iframe>
-    <h1>ASHA Attribution by Payer</h1>
-    <br>
     <script type='module' src='https://tableau.ascension.org/javascripts/api/tableau.embedding.3.latest.min.js'></script><tableau-viz id='tableau-viz' src='https://tableau.ascension.org/t/Ascension_Texas/views/MembershipAttributionDashboard/MembershipbyPayer' width='1340' height='1288' toolbar='bottom' ></tableau-viz>
 </body>
 <br>

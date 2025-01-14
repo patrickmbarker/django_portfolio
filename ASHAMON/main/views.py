@@ -2,7 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import ToDoList, Item
 from .forms import CreateNewList
-import shautils as sha
+import shautils as utils
+from io import BytesIO
+import pandas as pd
+
 # Create your views here.
 
 def index(response, id):
@@ -57,3 +60,11 @@ def view(response):
 
 def attribution(response):
     return render(response, "main/attribution.html", {})
+
+def sql_jobs_failed(response):
+    conn = utils.connect_to_sqldb2("AHWSQLTXAUS012","SHA_PROD")
+    list_of_rows = []
+    sql = f"select j.name ,j.description ,js.step_id ,js.step_name ,jh.run_status, jh.sql_severity ,jh.message ,jh.run_date ,jh.run_time FROM msdb.dbo.sysjobs AS j INNER JOIN msdb.dbo.sysjobsteps AS js ON js.job_id = j.job_id INNER JOIN msdb.dbo.sysjobhistory AS jh ON jh.job_id = j.job_id AND jh.step_id = js.step_id"
+    df = pd.read_sql(sql, conn)
+    print(df)
+    return render(response, "main/sql-jobs.html", {})
